@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: free-create-pod-app
+  labels:
+    app: free-create-pod-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: free-create-pod-app
+  template:
+    metadata:
+      labels:
+        app: free-create-pod-app
+    spec:
+      nodeSelector:
+        nodePool: cluster
+      containers:
+        - name: free-create-pod-app
+          image: free-create-pod-app:v.11
+          ports:
+            - containerPort: 9090
