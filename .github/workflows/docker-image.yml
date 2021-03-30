@@ -20,5 +20,5 @@ jobs:
         username: ${{ secrets.ACR_USERNAME }}
         password: ${{ secrets.ACR_PASSWORD }}
     - run: |
-        docker build . --file Dockerfile
+        docker build . --file Dockerfile --tag k8spractice.azurecr.io/k8sdemo:${{ github.sha }}
         docker push k8spractice.azurecr.io/k8sdemo:${{ github.sha }}
