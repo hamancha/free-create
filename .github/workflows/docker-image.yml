@@ -1,0 +1,24 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      
+    - uses: azure/docker-login@v1
+    - name: Docker login
+      with:
+        login-server: 'k8spractice.azurecr.io' # default: index.docker.io
+        username: ${{ secrets.ACR_USERNAME }}
+        password: ${{ secrets.ACR_PASSWORD }}
+    - run: |
+        docker build . --file Dockerfile --tag actionTest:$${{ github.sha }}
+        docker push k8spractice.azurecr.io/k8sdemo:${{ github.sha }}
