@@ -14,7 +14,7 @@ jobs:
     - uses: actions/checkout@v2
       
     - uses: azure/docker-login@v1
-    - name: Docker login
+      name: Docker login
       with:
         login-server: 'k8spractice.azurecr.io' # default: index.docker.io
         username: ${{ secrets.ACR_USERNAME }}
